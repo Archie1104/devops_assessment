@@ -15,15 +15,15 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: archie0223
-          password: 668866wmywanm
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and Push Production Image
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          tags: yourusername/yourapp:prod
+          tags: archie0223/devops-assessment:prod  # 修改为你的用户名和仓库名
 
   build_dev:
     runs-on: ubuntu-latest
@@ -35,15 +35,15 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: archie0223
-          password: 668866wmywanm
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and Push Development Image
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          tags: yourusername/yourapp:dev
+          tags: archie0223/devops-assessment:dev  # 修改为你的用户名和仓库名
 
   test:
     runs-on: ubuntu-latest
@@ -52,7 +52,6 @@ jobs:
       - name: Run Tests
         run: |
           echo "Testing build success"
-          docker pull yourusername/yourapp:prod
-          docker pull yourusername/yourapp:dev
+          docker pull archie0223/devops-assessment:prod  # 使用实际的镜像地址
+          docker pull archie0223/devops-assessment:dev  # 使用实际的镜像地址
           echo "Both images were pulled successfully"
-
