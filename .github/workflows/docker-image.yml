@@ -52,6 +52,6 @@ jobs:
       - name: Run Tests
         run: |
           echo "Testing build success"
-          docker pull archie0223/devops-assessment:prod  # 使用实际的镜像地址
-          docker pull archie0223/devops-assessment:dev  # 使用实际的镜像地址
+          docker pull archie0223/devops_assessment:prod  # 使用实际的镜像地址
+          docker pull archie0223/devops_assessment:dev  # 使用实际的镜像地址
           echo "Both images were pulled successfully"
