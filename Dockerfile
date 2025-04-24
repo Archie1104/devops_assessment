@@ -1,14 +1,14 @@
-# Use official Python base image
-FROM python:3.9-slim
 
-# Set environment variables
+FROM python:3.9-slim #Select Python base image
+
+#Installation environment
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Set work directory
+# Select the working directory
 WORKDIR /app
 
-# Install system dependencies
+Installing the system
 RUN apt-get update && apt-get install -y \
     build-essential \
     libglib2.0-0 \
@@ -21,11 +21,11 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the Streamlit app and model
+# Copy the app and model
 COPY . .
 
-# Expose port for Streamlit
+Exposing Streamlit’s default port
 EXPOSE 8501
 
-# Run the app
+Set the command to execute when the container starts
 CMD ["streamlit", "run", "app_pred.py", "--server.port=8501", "--server.address=0.0.0.0"]
